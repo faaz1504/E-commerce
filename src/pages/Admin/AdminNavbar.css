@@ -1,0 +1,50 @@
+.admin-navbar {
+  height: 70px;
+  background-color: #1f2937;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 30px;
+
+  position: fixed;
+  top: 0;
+  left: 250px;
+  right: 0;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  z-index: 100;
+}
+
+.admin-navbar h3 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.admin-profile span {
+  font-weight: 600;
+  color: #fdfcfc;
+}
+
+.logout-btn {
+  border: none;
+  background-color: #dc2626;
+  color: white;
+
+  padding: 8px 16px;
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #b91c1c;
+}
