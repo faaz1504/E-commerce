@@ -1,97 +1,205 @@
-import Carousel from 'react-bootstrap/Carousel';
-import img4 from '../../assets/carousel/vivo.webp'
-import img2 from '../../assets/carousel/TV.jpg'
-import img1 from '../../assets/carousel/H1.avif'
-import img3 from '../../assets/carousel/W1.jpg'
-
-
+import Carousel from "react-bootstrap/Carousel";
 import { Container, Button } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
+import img1 from "../../assets/carousel/H1.avif";
+import img2 from "../../assets/carousel/TV.jpg";
+import img3 from "../../assets/carousel/W1.jpg";
+import img4 from "../../assets/carousel/vivo.webp";
+
+function Home() {
+
+  const navigate = useNavigate();
+
+  const imageStyle = {
+    width: "100%",
+    height: "85vh",
+    objectFit: "cover",
+    filter: "brightness(65%)"
+  };
+
+  return (
+    <div>
+
+      {/* HERO CAROUSEL */}
+
+      <Carousel
+        fade
+        interval={3500}
+        className="mb-5"
+      >
+
+        <Carousel.Item>
+
+          <img
+            style={imageStyle}
+            src={img1}
+            alt="Samsung mobile"
+          />
+
+          <Carousel.Caption className="text-start mb-5">
+
+            <h1 className="display-4 fw-bold">
+              Upgrade Your Technology
+            </h1>
+
+            <p className="fs-5">
+              Discover the latest smartphones at great prices.
+            </p>
+
+            <Button
+              variant="light"
+              size="lg"
+              className="px-4 mt-2"
+              onClick={() => navigate("/products")}
+            >
+              Shop Now
+            </Button>
+
+          </Carousel.Caption>
+
+        </Carousel.Item>
 
 
+        <Carousel.Item>
+
+          <img
+            style={imageStyle}
+            src={img4}
+            alt="Vivo mobile"
+          />
+
+          <Carousel.Caption className="text-start mb-5">
+
+            <h1 className="display-4 fw-bold">
+              Latest Smartphones
+            </h1>
+
+            <p className="fs-5">
+              Performance, style and innovation in one place.
+            </p>
+
+            <Button
+              variant="light"
+              size="lg"
+              className="px-4 mt-2"
+              onClick={() => navigate("/products")}
+            >
+              Explore Products
+            </Button>
+
+          </Carousel.Caption>
+
+        </Carousel.Item>
 
 
+        <Carousel.Item>
 
-function Home(){
+          <img
+            style={imageStyle}
+            src={img2}
+            alt="Television"
+          />
 
-    const navigate = useNavigate();
+          <Carousel.Caption className="text-start mb-5">
 
-    let style = {
+            <h1 className="display-4 fw-bold">
+              Entertainment At Home
+            </h1>
 
-         width: "100%",
-  height: "100vh",
-  objectFit: "cover"
+            <p className="fs-5">
+              Find televisions made for an amazing viewing experience.
+            </p>
 
-    }
-    
-    return(
+            <Button
+              variant="light"
+              size="lg"
+              className="px-4 mt-2"
+              onClick={() => navigate("/products")}
+            >
+              View Products
+            </Button>
 
-        <div >
-            
-            <Carousel className='mb-5'>
-      <Carousel.Item>
-        <img style={style} src={img1} alt="img1"/>
-        {/* <Carousel.Caption>
-          <h3>samsung flip</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption> */}
-      </Carousel.Item>
-      <Carousel.Item>
-        <img style={style} src={img4} alt="img2" />
-        {/* <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption> */}
-      </Carousel.Item>
-      <Carousel.Item>
-        <img style={style} src={img2} alt="img3" />
-        {/* <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </Carousel.Caption>
+
+        </Carousel.Item>
+
+
+        <Carousel.Item>
+
+          <img
+            style={imageStyle}
+            src={img3}
+            alt="Smart watch"
+          />
+
+          <Carousel.Caption className="text-start mb-5">
+
+            <h1 className="display-4 fw-bold">
+              Smart Style Everyday
+            </h1>
+
+            <p className="fs-5">
+              Explore smart devices designed for your lifestyle.
+            </p>
+
+            <Button
+              variant="light"
+              size="lg"
+              className="px-4 mt-2"
+              onClick={() => navigate("/products")}
+            >
+              Shop Collection
+            </Button>
+
+          </Carousel.Caption>
+
+        </Carousel.Item>
+
+      </Carousel>
+
+
+      {/* INTRO SECTION */}
+
+      <section className="py-5">
+
+        <Container className="text-center">
+
+          <p className="text-primary fw-semibold mb-2">
+            SHOP EASE
           </p>
-        </Carousel.Caption> */}
-      </Carousel.Item>
-      <Carousel.Item>
-        <img style={style} src={img4} alt="img3" />
-        {/* <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+
+          <h2 className="fw-bold display-6 mb-3">
+            Discover Products You'll Love
+          </h2>
+
+          <p
+            className="text-muted mx-auto mb-4 fs-5"
+            style={{
+              maxWidth: "700px",
+              lineHeight: "1.8"
+            }}
+          >
+            Explore our collection of quality products at great prices.
+            From smartphones to electronics and accessories, find what
+            you need and enjoy a simple shopping experience.
           </p>
-        </Carousel.Caption> */}
-      </Carousel.Item>
-    </Carousel>
 
-    <section className="py-5 text-center">
+          <Button
+            variant="dark"
+            size="lg"
+            className="px-5 rounded-pill"
+            onClick={() => navigate("/products")}
+          >
+            Explore Products
+          </Button>
 
-      <Container>
+        </Container>
 
-        <h2 className="fw-bold mb-3">
-          Discover Products You'll Love
-        </h2>
+      </section>
 
-        <p className="text-muted mx-auto mb-4"
-           style={{ maxWidth: "650px" }}>
-          Explore our collection of quality products at great prices.
-          Find what you need and enjoy a simple shopping experience.
-        </p>
-
-        <Button 
-         variant="primary"
-         onClick={() => navigate("/products")}>
-          Shop Now
-        </Button>
-
-      </Container>
-
-    </section>
-
-        </div>
-
-        
-
-    );
-
+    </div>
+  );
 }
+
 export default Home;

@@ -1,211 +1,141 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button
+} from "react-bootstrap";
+import { addToCart } from "../../Redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 
-function Products(){
+function Products() {
 
-    return(
+  const products = useSelector(
+    (state) => state.products.products
+  );
 
-        <div>
+  const dispatch = useDispatch();
 
-            <section className="py-5 bg-light">
+  const navigate = useNavigate();
 
-      <Container>
 
-        <div className="text-center mb-5">
 
-          <h2 className="fw-bold">
-            Our Products
-          </h2>
+  return (
+    <Container className="py-5">
+
+      <div className="text-center mb-5">
+
+        <h2 className="fw-bold">
+          Our Products
+        </h2>
+
+        <p className="text-muted">
+          Explore our latest collection
+        </p>
+
+      </div>
+
+
+      {products.length === 0 ? (
+
+        <div className="text-center py-5">
+
+          <h4>No Products Available</h4>
 
           <p className="text-muted">
-            Explore some of our latest products.
+            Products will appear here when they are added.
           </p>
 
         </div>
 
+      ) : (
 
         <Row className="g-4">
 
-          <Col xs={12} sm={6} md={4} lg={3}>
+          {products.map((product) => (
 
-            <Card className="h-10 border-0 shadow-sm">
+            <Col
+              key={product.id}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+            >
 
-              <Card.Img
-                variant="top"
-                src="https://via.placeholder.com/300"
-                style={{
-                  height: "200px",
-                  objectFit: "cover"
-                }}
-              />
+              <Card
+                className="h-100 border-0 shadow-sm"
+              >
 
-              <Card.Body>
+                <Card.Img
+                  variant="top"
+                  src={product.image}
+                  alt={product.name}
+                  style={{
+                    height: "220px",
+                    objectFit: "cover"
+                  }}
+                />
 
-                <Card.Title>
-                  iPhone 17
-                </Card.Title>
 
-                <Card.Text className="text-muted">
-                  Latest smartphone with powerful performance.
-                </Card.Text>
+                <Card.Body className="d-flex flex-column">
 
-                <h5 className="fw-bold">
-                  ₹1,02,900
-                </h5>
+                  <Card.Title className="fw-bold">
 
-                <div className="d-flex gap-2 mt-3">
+                    {product.name}
+
+                  </Card.Title>
+
+
+                  <p className="text-muted mb-2">
+
+                    {product.category}
+
+                  </p>
+
+
+                  <Card.Text
+                    className="text-muted"
+                    style={{
+                      fontSize: "14px"
+                    }}
+                  >
+
+                    {product.description}
+
+                  </Card.Text>
+
+
+                  <h5 className="fw-bold mt-auto">
+
+                    ₹{product.price}
+
+                  </h5>
+
 
                   <Button
-                    variant="primary"
-                    className="w-100"
-                    onClick={() => navigate("/cart")}
+                    variant="dark"
+                    className="w-100 mt-3"
+                    onClick={() => dispatch(addToCart(product))}
+                    
                   >
                     Add to Cart
                   </Button>
 
-                </div>
+                </Card.Body>
 
-              </Card.Body>
+              </Card>
 
-            </Card>
+            </Col>
 
-          </Col>
-
-
-          <Col xs={12} sm={6} md={4} lg={3}>
-
-            <Card className="h-10 border-0 shadow-sm">
-
-              <Card.Img
-                variant="top"
-                src="https://via.placeholder.com/300"
-                style={{
-                  height: "200px",
-                  objectFit: "cover"
-                }}
-              />
-
-              <Card.Body>
-
-                <Card.Title>
-                  Headphones
-                </Card.Title>
-
-                <Card.Text className="text-muted">
-                  Wireless headphones with clear audio.
-                </Card.Text>
-
-                <h5 className="fw-bold">
-                  ₹4,999
-                </h5>
-
-                <Button
-                  variant="primary"
-                  className="w-100 mt-3"
-                  onClick={() => navigate("/cart")}
-                >
-                  Add to Cart
-                </Button>
-
-              </Card.Body>
-
-            </Card>
-
-          </Col>
-
-
-          <Col xs={12} sm={6} md={4} lg={3}>
-
-            <Card className="h-10 border-0 shadow-sm">
-
-              <Card.Img
-                variant="top"
-                src="https://via.placeholder.com/300"
-                style={{
-                  height: "200px",
-                  objectFit: "cover"
-                }}
-              />
-
-              <Card.Body>
-
-                <Card.Title>
-                  Smart Watch
-                </Card.Title>
-
-                <Card.Text className="text-muted">
-                  Track your fitness and daily activity.
-                </Card.Text>
-
-                <h5 className="fw-bold">
-                  ₹7,999
-                </h5>
-
-                <Button
-                  variant="primary"
-                  className="w-100 mt-3"
-                  onClick={() => navigate("/cart")}
-                >
-                  Add to Cart
-                </Button>
-
-              </Card.Body>
-
-            </Card>
-
-          </Col>
-
-
-          <Col xs={12} sm={6} md={4} lg={3}>
-
-            <Card className="h-10 border-0 shadow-sm">
-
-              <Card.Img
-                variant="top"
-                src="https://via.placeholder.com/300"
-                style={{
-                  height: "200px",
-                  objectFit: "cover"
-                }}
-              />
-
-              <Card.Body>
-
-                <Card.Title>
-                  Laptop
-                </Card.Title>
-
-                <Card.Text className="text-muted">
-                  Fast and reliable laptop for everyday work.
-                </Card.Text>
-
-                <h5 className="fw-bold">
-                  ₹59,999
-                </h5>
-
-                <Button
-                  variant="primary"
-                  className="w-100 mt-3"
-                  onClick={() => navigate("/cart")}
-                >
-                  Add to Cart
-                </Button>
-
-              </Card.Body>
-
-            </Card>
-
-          </Col>
+          ))}
 
         </Row>
 
-      </Container>
+      )}
 
-    </section>
-
-        </div>
-
-    )
-
+    </Container>
+  );
 }
+
 export default Products;
