@@ -116,7 +116,10 @@ function Products() {
                   <Button
                     variant="dark"
                     className="w-100 mt-3"
-                    onClick={() => dispatch(addToCart(product))}
+                    onClick={() =>{
+                       dispatch(addToCart(product));
+                       navigate('/User-cart')
+                    }}
                     
                   >
                     Add to Cart

@@ -12,10 +12,11 @@ function Home() {
   const navigate = useNavigate();
 
   const imageStyle = {
-    width: "100%",
-    height: "85vh",
-    objectFit: "cover",
-    filter: "brightness(65%)"
+   width: "100%",
+  height: "500px",
+  objectFit: "cover",
+  objectPosition: "center",
+  filter: "brightness(65%)"
   };
 
   return (
@@ -33,13 +34,13 @@ function Home() {
 
           <img
             style={imageStyle}
-            src={img1}
+            src="https://m.media-amazon.com/images/I/71pdp0ZzicL._SL1500_.jpg"
             alt="Samsung mobile"
           />
 
           <Carousel.Caption className="text-start mb-5">
 
-            <h1 className="display-4 fw-bold">
+            <h1 className="display-5 fw-bold">
               Upgrade Your Technology
             </h1>
 

@@ -1,203 +1,349 @@
-import { Container, Row, Col, Card, Button} from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { decreaseQuantity, increaseQuanitity, removeFromCart } from "../../Redux/cartSlice";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Badge
+} from "react-bootstrap";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  decreaseQuantity,
+  increaseQuanitity,
+  removeFromCart
+} from "../../Redux/cartSlice";
 
 
-function UserCart(){
+function UserCart() {
 
   const cartItems = useSelector(
     (state) => state.cart.cartItems
   );
 
+  const dispatch = useDispatch();
+
+
   const totalPrice = cartItems.reduce(
-    (total,item) =>
+    (total, item) =>
       total + item.price * item.quantity,
     0
-
   );
 
-    return(
+
+  const totalItems = cartItems.reduce(
+    (total, item) =>
+      total + item.quantity,
+    0
+  );
+
+
+  return (
+
+    <Container className="py-5">
+
+      {/* HEADING */}
+
+      <div className="d-flex justify-content-between align-items-center mb-4">
 
         <div>
 
-        <Container className="py-5">
+          <h2 className="fw-bold mb-1">
+            Shopping Cart
+          </h2>
 
-      <h2 className="fw-bold mb-4">
-        Shopping Cart
-      </h2>
-      
-      {cartItems.length === 0 ? (
-
-        <div className="text-center py-5">
-
-          <h4>Your cart is empty</h4>
-
-          <p className="text-muted">
-            Add some products to your cart.
+          <p className="text-muted mb-0">
+            {totalItems} items in your cart
           </p>
 
         </div>
 
+      </div>
+
+
+      {cartItems.length === 0 ? (
+
+        <Card className="border-0 shadow-sm text-center">
+
+          <Card.Body className="py-5">
+
+            <h3 className="fw-bold">
+              Your cart is empty
+            </h3>
+
+            <p className="text-muted">
+              Looks like you haven't added any products yet.
+            </p>
+
+            <Button
+              variant="dark"
+              className="px-4"
+              href="/products"
+            >
+              Continue Shopping
+            </Button>
+
+          </Card.Body>
+
+        </Card>
+
       ) : (
 
-        <>
-          {cartItems.map((item) => (
+        <Row className="g-4">
+
+
+          {/* LEFT SIDE - CART PRODUCTS */}
+
+          <Col lg={8}>
+
+            {cartItems.map((item) => (
+
+              <Card
+                key={item.id}
+                className="border-0 shadow-sm mb-3"
+              >
+
+                <Card.Body className="p-4">
+
+                  <Row className="align-items-center g-3">
+
+
+                    {/* IMAGE */}
+
+                    <Col xs={12} sm={3} md={2}>
+
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="img-fluid rounded"
+                        style={{
+                          width: "110px",
+                          height: "110px",
+                          objectFit: "cover"
+                        }}
+                      />
+
+                    </Col>
+
+
+                    {/* PRODUCT DETAILS */}
+
+                    <Col xs={12} sm={9} md={4}>
+
+                      <h5 className="fw-bold mb-2">
+                        {item.name}
+                      </h5>
+
+                      <Badge
+                        bg="secondary"
+                        className="mb-2"
+                      >
+                        {item.category}
+                      </Badge>
+
+                      <h6 className="fw-semibold mt-2">
+                        ₹{item.price}
+                      </h6>
+
+                    </Col>
+
+
+                    {/* QUANTITY */}
+
+                    <Col xs={6} md={3}>
+
+                      <p className="text-muted small mb-2">
+                        Quantity
+                      </p>
+
+                      <div className="d-flex align-items-center gap-2">
+
+                        <Button
+                          variant="outline-secondary"
+                          size="sm"
+                          onClick={() =>
+                            dispatch(
+                              decreaseQuantity(item.id)
+                            )
+                          }
+                        >
+                          −
+                        </Button>
+
+
+                        <span
+                          className="fw-bold text-center"
+                          style={{
+                            minWidth: "30px"
+                          }}
+                        >
+                          {item.quantity}
+                        </span>
+
+
+                        <Button
+                          variant="outline-secondary"
+                          size="sm"
+                          onClick={() =>
+                            dispatch(
+                              increaseQuanitity(item.id)
+                            )
+                          }
+                        >
+                          +
+                        </Button>
+
+                      </div>
+
+                    </Col>
+
+
+                    {/* SUBTOTAL + REMOVE */}
+
+                    <Col
+                      xs={6}
+                      md={3}
+                      className="text-md-end"
+                    >
+
+                      <p className="text-muted small mb-1">
+                        Subtotal
+                      </p>
+
+                      <h5 className="fw-bold">
+                        ₹{item.price * item.quantity}
+                      </h5>
+
+                      <Button
+                        variant="link"
+                        className="text-danger p-0 text-decoration-none"
+                        onClick={() =>
+                          dispatch(
+                            removeFromCart(item.id)
+                          )
+                        }
+                      >
+                        Remove
+                      </Button>
+
+                    </Col>
+
+                  </Row>
+
+                </Card.Body>
+
+              </Card>
+
+            ))}
+
+          </Col>
+
+
+          {/* RIGHT SIDE - ORDER SUMMARY */}
+
+          <Col lg={4}>
 
             <Card
-              key={item.id}
-              className="border-0 shadow-sm mb-3"
+              className="border-0 shadow-sm"
+              style={{
+                position: "sticky",
+                top: "100px"
+              }}
             >
 
-              <Card.Body>
+              <Card.Body className="p-4">
 
-                <Row className="align-items-center">
-
-                  {/* IMAGE */}
-
-                  <Col md={2}>
-
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="img-fluid rounded"
-                      style={{
-                        height: "100px",
-                        width: "100px",
-                        objectFit: "cover"
-                      }}
-                    />
-
-                  </Col>
+                <h4 className="fw-bold mb-4">
+                  Order Summary
+                </h4>
 
 
-                  {/* PRODUCT DETAILS */}
+                <div className="d-flex justify-content-between mb-3">
 
-                  <Col md={4}>
+                  <span className="text-muted">
+                    Items
+                  </span>
 
-                    <h5 className="fw-bold">
-                      {item.name}
-                    </h5>
+                  <span>
+                    {totalItems}
+                  </span>
 
-                    <p className="text-muted mb-1">
-                      {item.category}
-                    </p>
-
-                    <h6>
-                      ₹{item.price}
-                    </h6>
-
-                  </Col>
+                </div>
 
 
-                  {/* QUANTITY */}
+                <div className="d-flex justify-content-between mb-3">
 
-                  <Col md={3}>
+                  <span className="text-muted">
+                    Subtotal
+                  </span>
 
-                    <div className="d-flex align-items-center gap-2">
+                  <span>
+                    ₹{totalPrice}
+                  </span>
 
-                      <Button
-                        variant="outline-dark"
-                        size="sm"
-                        onClick={() =>
-                          dispatch(
-                            decreaseQuantity(item.id)
-                          )
-                        }
-                      >
-                        -
-                      </Button>
+                </div>
 
 
-                      <span className="fw-bold">
-                        {item.quantity}
-                      </span>
+                <div className="d-flex justify-content-between mb-3">
+
+                  <span className="text-muted">
+                    Delivery
+                  </span>
+
+                  <span className="text-success">
+                    Free
+                  </span>
+
+                </div>
 
 
-                      <Button
-                        variant="outline-dark"
-                        size="sm"
-                        onClick={() =>
-                          dispatch(
-                            increaseQuanitity(item.id)
-                          )
-                        }
-                      >
-                        +
-                      </Button>
-
-                    </div>
-
-                  </Col>
+                <hr />
 
 
-                  {/* SUBTOTAL */}
+                <div className="d-flex justify-content-between align-items-center mb-4">
 
-                  <Col md={2}>
+                  <h5 className="fw-bold mb-0">
+                    Total
+                  </h5>
 
-                    <h6 className="fw-bold">
-                      ₹{item.price * item.quantity}
-                    </h6>
+                  <h4 className="fw-bold mb-0">
+                    ₹{totalPrice}
+                  </h4>
 
-                  </Col>
+                </div>
 
 
-                  {/* REMOVE */}
+                <Button
+                  variant="dark"
+                  size="lg"
+                  className="w-100"
+                >
+                  Proceed to Checkout
+                </Button>
 
-                  <Col md={1}>
 
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() =>
-                        dispatch(
-                          removeFromCart(item.id)
-                        )
-                      }
-                    >
-                      Remove
-                    </Button>
-
-                  </Col>
-
-                </Row>
+                <Button
+                  variant="outline-secondary"
+                  className="w-100 mt-3"
+                  href="/products"
+                >
+                  Continue Shopping
+                </Button>
 
               </Card.Body>
 
             </Card>
 
-          ))}
+          </Col>
 
+        </Row>
 
-          {/* TOTAL */}
-
-          <Card className="border-0 shadow-sm mt-4">
-
-            <Card.Body>
-
-              <div className="d-flex justify-content-between align-items-center">
-
-                <h4 className="mb-0">
-                  Total
-                </h4>
-
-                <h3 className="fw-bold mb-0">
-                  ₹{totalPrice}
-                </h3>
-
-              </div>
-
-            </Card.Body>
-
-          </Card>
-
-        </>
       )}
-        </Container>
-            
-        </div>
 
-    )
+    </Container>
 
-
+  );
 }
+
 export default UserCart;

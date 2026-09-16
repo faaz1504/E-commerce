@@ -44,7 +44,12 @@ function App(){
 
           <Route path='/user-nav' element={<UserNavbar/>}/>
 
-          <Route path='/User-cart' element={<UserCart/>}/>
+          <Route path='/User-cart'
+           element={
+           <ProtectedRoute role='user'>
+              <UserCart/>
+           </ProtectedRoute>
+          }/>
 
           <Route path='/products' element={<Products/>}/>
 
