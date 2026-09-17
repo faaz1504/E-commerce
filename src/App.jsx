@@ -4,7 +4,7 @@ import Register from './pages/Admin/Reg/Register';
 import AdminSidebar from './pages/Admin/AdminSidebar';
 import AdminNavbar from './pages/Admin/AdminNavbar';
 import AdminDashboard from './pages/Admin/AdminDashboard';
-// import NavBar from './components/Navbar';
+
 import AddProduct from './pages/Admin/AddProducts';
 import ViewUsers from './pages/Admin/Viewuser';
 import ViewProducts from './pages/Admin/Viewproducts';

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseQuantity,
   increaseQuanitity,
-  removeFromCart
+  
 } from "../../Redux/cartSlice";
 
 
@@ -41,7 +41,7 @@ function UserCart() {
 
   return (
 
-    <Container className="py-5">
+    <Container className="py-4">
 
       {/* HEADING */}
 
@@ -143,7 +143,7 @@ function UserCart() {
                       </Badge>
 
                       <h6 className="fw-semibold mt-2">
-                        ₹{item.price}
+                        ₹{item.price.toLocaleString("en-IN")}
                       </h6>
 
                     </Col>
@@ -168,7 +168,7 @@ function UserCart() {
                             )
                           }
                         >
-                          −
+                          -
                         </Button>
 
 
@@ -308,7 +308,7 @@ function UserCart() {
                   </h5>
 
                   <h4 className="fw-bold mb-0">
-                    ₹{totalPrice}
+                    ₹{totalPrice.toLocaleString("en-IN")}
                   </h4>
 
                 </div>

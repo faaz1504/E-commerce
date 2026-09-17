@@ -108,7 +108,7 @@ function Products() {
 
                   <h5 className="fw-bold mt-auto">
 
-                    ₹{product.price}
+                    ₹{product.price.toLocaleString("en-IN")}
 
                   </h5>
 
@@ -118,7 +118,7 @@ function Products() {
                     className="w-100 mt-3"
                     onClick={() =>{
                        dispatch(addToCart(product));
-                       navigate('/User-cart')
+                       navigate('/User-cart');
                     }}
                     
                   >
