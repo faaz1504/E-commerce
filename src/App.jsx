@@ -7,7 +7,7 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 
 import AddProduct from './pages/Admin/AddProducts';
 
-import ViewProducts from './pages/Admin/Viewproducts';
+import ViewProducts from './pages/Admin/ViewProducts';
 import DashBoardHome from './pages/Admin/DashBoardHome';
 import SignIn from './pages/Admin/Reg/Sign-In';
 import UserNavbar from './pages/User/UserNavbar';
@@ -16,7 +16,7 @@ import UserCart from './pages/User/User-Cart';
 import Userlayout from './pages/User/UserLayout';
 import Products from './pages/User/Products';
 import Profile from './pages/User/Profile';
-import EditProduct from './pages/Admin/editProduct';
+import EditProduct from './pages/Admin/EditProduct';
 import ProtectedRoute from './components/ProtectedRoute';
 import ViewUsers from './pages/Admin/ViewUsers';
 
