@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseQuantity,
   increaseQuanitity,
+  removeFromCart,
   
 } from "../../Redux/cartSlice";
 
@@ -220,7 +221,7 @@ function UserCart() {
                         className="text-danger p-0 text-decoration-none"
                         onClick={() =>
                           dispatch(
-                            removeFromCart(item.id)
+                            removeFromCart (item.id)
                           )
                         }
                       >
@@ -318,6 +319,7 @@ function UserCart() {
                   variant="dark"
                   size="lg"
                   className="w-100"
+                  onClick={()=>alert("your order is success")}
                 >
                   Proceed to Checkout
                 </Button>

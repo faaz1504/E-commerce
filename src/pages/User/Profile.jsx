@@ -37,7 +37,7 @@ function Profile() {
 
       <h2 className="fw-bold mb-4">
         My Profile
-      </h2>
+      </h2> 
 
       <Row className="g-4">
 

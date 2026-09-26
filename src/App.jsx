@@ -6,7 +6,7 @@ import AdminNavbar from './pages/Admin/AdminNavbar';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 
 import AddProduct from './pages/Admin/AddProducts';
-import ViewUsers from './pages/Admin/Viewuser';
+
 import ViewProducts from './pages/Admin/Viewproducts';
 import DashBoardHome from './pages/Admin/DashBoardHome';
 import SignIn from './pages/Admin/Reg/Sign-In';
@@ -18,6 +18,7 @@ import Products from './pages/User/Products';
 import Profile from './pages/User/Profile';
 import EditProduct from './pages/Admin/editProduct';
 import ProtectedRoute from './components/ProtectedRoute';
+import ViewUsers from './pages/Admin/ViewUsers';
 
 function App(){
 
